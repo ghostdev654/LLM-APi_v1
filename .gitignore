@@ -1,0 +1,7 @@
+.env
+stats.db
+node_modules/*
+package-lock.json
+.config
+.agents
+.replit
