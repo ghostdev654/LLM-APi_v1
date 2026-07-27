@@ -1,0 +1,46 @@
+◇ injected env (2) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+/home/container/node_modules/bindings/bindings.js:126
+  err = new Error(
+        ^
+Error: Could not locate the bindings file. Tried:
+ → /home/container/node_modules/better-sqlite3/build/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/build/Debug/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/build/Release/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/out/Debug/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/Debug/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/out/Release/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/Release/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/build/default/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/compiled/24.18.0/linux/x64/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/addon-build/release/install-root/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/addon-build/debug/install-root/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/addon-build/default/install-root/better_sqlite3.node
+ → /home/container/node_modules/better-sqlite3/lib/binding/node-v137-linux-x64/better_sqlite3.node
+    at bindings (/home/container/node_modules/bindings/bindings.js:126:9)
+    at new Database (/home/container/node_modules/better-sqlite3/lib/database.js:48:64)
+    at file:///home/container/app/database.js:3:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  tries: [
+    '/home/container/node_modules/better-sqlite3/build/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/build/Debug/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/build/Release/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/out/Debug/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/Debug/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/out/Release/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/Release/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/build/default/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/compiled/24.18.0/linux/x64/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/addon-build/release/install-root/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/addon-build/debug/install-root/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/addon-build/default/install-root/better_sqlite3.node',
+    '/home/container/node_modules/better-sqlite3/lib/binding/node-v137-linux-x64/better_sqlite3.node'
+  ]
+}
+Node.js v24.18.0
+container@skyultraplus~ Server marked as offline...
+[skyultraplus]: ---------- Detected server process in a crashed state! ----------
+[skyultraplus]: Exit code: 1
+[skyultraplus]: Out of memory: false
+[skyultraplus]: Aborting automatic restart, last crash occurred less than 60 seconds ago.
