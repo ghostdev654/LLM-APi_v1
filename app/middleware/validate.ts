@@ -1,24 +1,17 @@
-/**
- * This file is part of the LLM-API project, solely developed and maintained by GhostDev.
- * https://github.com/ghostdev654/LLM-APi_v1
- *
- * All rights reserved.
- *
- * - You are NOT allowed to copy, rewrite, modify, redistribute, or reuse this file in any form.
- * - You are NOT allowed to claim this file or any part of this project as your own.
- * - This credit notice must NOT be removed or altered.
- * - This file may ONLY be used within the LLM-API v1 project.
- */
+import type { Request, Response, NextFunction } from "express";
 
-import { Request, Response, NextFunction } from "express";
-
-export function validateInput(req: Request, res: Response, next: NextFunction) {
+export function validateInput(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void {
   if (req.method === "POST" && req.body) {
-    const { systemPrompt, userPrompt, prompt, text } = req.body;
+    const { systemPrompt, userPrompt, prompt, text } = req.body as Record<string, unknown>;
     const content = systemPrompt || userPrompt || prompt || text;
 
-    if (content && content.length > 5000) {
-      return res.status(400).json({ error: "Prompt too long." });
+    if (typeof content === "string" && content.length > 5000) {
+      res.status(400).json({ error: "Prompt too long." });
+      return;
     }
   }
   next();

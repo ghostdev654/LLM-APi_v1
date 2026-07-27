@@ -1,0 +1,49 @@
+[skyultraplus]: Checking server disk space usage, this could take a few seconds...
+[skyultraplus]: Updating process configuration files...
+[skyultraplus]: Ensuring file permissions are set correctly, this could take a few seconds...
+container@skyultraplus~ Server marked as starting...
+[skyultraplus]: Pulling Docker container image, this could take a few minutes to complete...
+[skyultraplus]: Finished pulling Docker container image
+v24.18.0
+:/home/container$ if [[ -d .git ]] && [[ 1 == "1" ]]; then git pull; fi; if [[ ! -z ${NODE_PACKAGES} ]]; then /usr/local/bin/npm install ${NODE_PACKAGES}; fi; if [[ ! -z ${UNNODE_PACKAGES} ]]; then /usr/local/bin/npm uninstall ${UNNODE_PACKAGES}; fi; if [ -f /home/container/package.json ]; then /usr/local/bin/npm install; fi; /usr/local/bin/node /home/container/${MAIN_FILE}
+Already up to date.
+npm warn Unknown user config "auto-install-peers". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "strict-peer-dependencies". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "onlyBuiltDependencies". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "only-built-dependencies". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+up to date, audited 292 packages in 515ms
+
+71 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn install-scripts 3 packages had install scripts blocked because they are not covered by allowScripts:
+npm warn install-scripts   better-sqlite3@12.11.1 (install: node-gyp rebuild)
+npm warn install-scripts   esbuild@0.28.1 (postinstall: node install.js)
+npm warn install-scripts   node-llama-cpp@3.19.1 (postinstall: node ./dist/cli/cli.js postinstall)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/container/app/routes/chat' imported from /home/container/app/index.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:253:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///home/container/app/routes/chat'
+}
+Node.js v24.18.0
+container@skyultraplus~ Server marked as offline...
+[skyultraplus]: ---------- Detected server process in a crashed state! ----------
+[skyultraplus]: Exit code: 1
+[skyultraplus]: Out of memory: false
+[skyultraplus]: Aborting automatic restart, last crash occurred less than 60 seconds ago.
