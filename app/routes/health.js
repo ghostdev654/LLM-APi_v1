@@ -3,9 +3,9 @@ import { getStats } from "../database.js";
 
 const router = Router();
 
-router.get("/", (_req, res) => {
+router.get("/", async (_req, res) => {
   try {
-    const stats = getStats();
+    const stats = await getStats();
     const uptime = process.uptime();
 
     res.json({

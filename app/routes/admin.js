@@ -4,7 +4,7 @@ import { ADMIN_TOKEN } from "../config.js";
 
 const router = Router();
 
-router.post("/reset-stats", (req, res) => {
+router.post("/reset-stats", async (req, res) => {
   try {
     const { token } = req.body;
 
@@ -18,7 +18,7 @@ router.post("/reset-stats", (req, res) => {
       return;
     }
 
-    resetStats();
+    await resetStats();
     res.json({ status: "ok", message: "Estadísticas reiniciadas" });
   } catch (error) {
     console.error("Error en /api/admin/reset-stats:", error);
