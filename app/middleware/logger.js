@@ -1,12 +1,7 @@
 import chalk from "chalk";
-import type { Request, Response, NextFunction } from "express";
 import { logRequest } from "../database.js";
 
-export function requestLogger(
-  req: Request,
-  _res: Response,
-  next: NextFunction
-): void {
+export function requestLogger(req, _res, next) {
   try {
     logRequest(req.path);
 

@@ -1,12 +1,12 @@
-import { Router, type Request, type Response } from "express";
+import { Router } from "express";
 import { resetStats } from "../database.js";
 import { ADMIN_TOKEN } from "../config.js";
 
 const router = Router();
 
-router.post("/reset-stats", (req: Request, res: Response): void => {
+router.post("/reset-stats", (req, res) => {
   try {
-    const { token } = req.body as { token?: unknown };
+    const { token } = req.body;
 
     if (!token) {
       res.status(400).json({ error: "Missing admin token." });

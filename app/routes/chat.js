@@ -1,14 +1,11 @@
-import { Router, type Request, type Response } from "express";
+import { Router } from "express";
 import { runChatCompletion } from "../services/llama.js";
 
 const router = Router();
 
-router.post("/", async (req: Request, res: Response): Promise<void> => {
+router.post("/", async (req, res) => {
   try {
-    const { systemPrompt, userPrompt } = req.body as {
-      systemPrompt?: unknown;
-      userPrompt?: unknown;
-    };
+    const { systemPrompt, userPrompt } = req.body;
 
     if (typeof systemPrompt !== "string" || typeof userPrompt !== "string") {
       res.status(400).json({ error: "systemPrompt and userPrompt are required strings." });

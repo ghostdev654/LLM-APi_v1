@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(validateInput);
 
-// Rate limiting - 100 requests per 15 minutes
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -25,7 +24,6 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Endpoints
 app.use("/api/chat", chatRouter);
 app.use("/api/completion", completionRouter);
 app.use("/api/embeddings", embeddingsRouter);

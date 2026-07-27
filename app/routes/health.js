@@ -1,9 +1,9 @@
-import { Router, type Request, type Response } from "express";
+import { Router } from "express";
 import { getStats } from "../database.js";
 
 const router = Router();
 
-router.get("/", (_req: Request, res: Response): void => {
+router.get("/", (_req, res) => {
   try {
     const stats = getStats();
     const uptime = process.uptime();

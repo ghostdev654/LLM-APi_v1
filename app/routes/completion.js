@@ -1,11 +1,11 @@
-import { Router, type Request, type Response } from "express";
+import { Router } from "express";
 import { runCompletion } from "../services/llama.js";
 
 const router = Router();
 
-router.post("/", async (req: Request, res: Response): Promise<void> => {
+router.post("/", async (req, res) => {
   try {
-    const { prompt } = req.body as { prompt?: unknown };
+    const { prompt } = req.body;
 
     if (typeof prompt !== "string" || prompt.trim() === "") {
       res.status(400).json({ error: "Missing or invalid prompt." });

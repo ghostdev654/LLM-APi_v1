@@ -1,10 +1,5 @@
 import Database from "better-sqlite3";
 
-interface RequestRow {
-  endpoint: string;
-  count: number;
-}
-
 const db = new Database("stats.db");
 
 db.exec(`
@@ -14,7 +9,7 @@ db.exec(`
   )
 `);
 
-export function logRequest(endpoint: string): void {
+export function logRequest(endpoint) {
   const stmt = db.prepare(`
     INSERT INTO requests (endpoint, count)
     VALUES (?, 1)
@@ -23,18 +18,15 @@ export function logRequest(endpoint: string): void {
   stmt.run(endpoint);
 }
 
-export function getStats(): {
-  total: number;
-  mostUsed: RequestRow | null;
-} {
+export function getStats() {
   const totalRow = db
     .prepare("SELECT SUM(count) as total FROM requests")
-    .get() as { total: number | null } | undefined;
+    .get();
   const total = totalRow?.total ?? 0;
 
   const mostUsedRow = db
     .prepare("SELECT endpoint, count FROM requests ORDER BY count DESC LIMIT 1")
-    .get() as RequestRow | undefined;
+    .get();
 
   return {
     total,
@@ -42,6 +34,6 @@ export function getStats(): {
   };
 }
 
-export function resetStats(): void {
+export function resetStats() {
   db.exec("DELETE FROM requests");
 }

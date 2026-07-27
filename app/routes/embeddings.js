@@ -1,11 +1,11 @@
-import { Router, type Request, type Response } from "express";
+import { Router } from "express";
 import { runEmbeddings } from "../services/embeddings.js";
 
 const router = Router();
 
-router.post("/", async (req: Request, res: Response): Promise<void> => {
+router.post("/", async (req, res) => {
   try {
-    const { text } = req.body as { text?: unknown };
+    const { text } = req.body;
 
     if (typeof text !== "string" || text.trim() === "") {
       res.status(400).json({ error: "Missing or invalid text." });
