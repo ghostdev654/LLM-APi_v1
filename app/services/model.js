@@ -3,12 +3,12 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export const MODEL_FILENAME = "llama-3.2-1b-instruct-q4_k_m.gguf";
+export const MODEL_FILENAME = "qwen2.5-0.5b-instruct-q4_k_m.gguf";
 export const MODEL_PATH = path.join(__dirname, "..", "models", MODEL_FILENAME);
 
 const MODEL_URL =
   process.env.MODEL_URL ||
-  "https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf?download=true";
+  "https://huggingface.co/bartowski/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/Qwen2.5-0.5B-Instruct-Q4_K_M.gguf?download=true";
 
 let downloadPromise = null;
 
@@ -27,7 +27,7 @@ export async function ensureModel() {
 async function downloadModel() {
   fs.mkdirSync(path.dirname(MODEL_PATH), { recursive: true });
   const temporaryPath = `${MODEL_PATH}.download`;
-  console.log("[Model] GGUF not found; downloading Llama 3.2 1B Q4_K_M...");
+  console.log("[Model] GGUF not found; downloading Qwen2.5 0.5B Q4_K_M...");
 
   const response = await fetch(MODEL_URL, { redirect: "follow" });
   if (!response.ok || !response.body) {

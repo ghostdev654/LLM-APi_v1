@@ -11,7 +11,8 @@ async function getSession() {
   const modelPath = await ensureModel();
   const llama = await getLlama();
   const model = await llama.loadModel({ modelPath });
-  const context = await model.createContext();
+  // Keep the KV cache small enough for servers with a 4 GiB memory limit.
+  const context = await model.createContext({ contextSize: 2048 });
   _session = new LlamaChatSession({
     contextSequence: context.getSequence(),
   });
