@@ -31,14 +31,19 @@ const endpointRows = [
     body: "Sin body",
     response: '{ "status": "ok", "uptime": "..." }',
   },
-  {
-    method: "POST",
-    path: "/api/admin/reset-stats",
-    description: "Reinicia las estadísticas. Requiere el token de administrador.",
-    body: '{ "token": "TU_ADMIN_TOKEN" }',
-    response: '{ "status": "ok", "message": "Estadísticas reiniciadas" }',
-  },
 ];
+
+const logoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title>LLM API</title>
+  <defs>
+    <linearGradient id="g" x1="12" y1="8" x2="116" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#72a7ff"/><stop offset="1" stop-color="#53d39b"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="#0b1020"/>
+  <path d="M27 38v52h20M27 64h18M101 38v52H81M101 64H83" fill="none" stroke="url(#g)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+  <path d="M63.5 31v66M54 42c-8 0-13 4-13 10s5 9 13 11l7 2c8 2 13 5 13 11s-5 10-14 10c-7 0-13-3-17-8" fill="none" stroke="#e8edf8" stroke-linecap="round" stroke-width="7"/>
+</svg>`;
 
 function escapeHtml(value) {
   return String(value)
@@ -72,6 +77,7 @@ router.get("/", (_req, res) => {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/docs/logo.svg">
   <title>LLM API · Documentación</title>
   <style>
     :root { color-scheme: dark; --bg: #0b1020; --panel: #121a2d; --line: #263452; --text: #e8edf8; --muted: #9aa8c4; --accent: #72a7ff; --green: #53d39b; }
@@ -79,6 +85,8 @@ router.get("/", (_req, res) => {
     body { margin: 0; background: radial-gradient(circle at top, #162344, var(--bg) 48%); color: var(--text); font: 16px/1.6 system-ui, -apple-system, sans-serif; }
     main { width: min(100% - 32px, 980px); margin: 0 auto; padding: 64px 0; }
     .hero { margin-bottom: 36px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 58px; height: 58px; border-radius: 15px; box-shadow: 0 8px 24px #0005; }
     .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .78rem; }
     h1 { font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.05; margin: 10px 0 14px; }
     h2 { margin-top: 42px; }
@@ -100,8 +108,13 @@ router.get("/", (_req, res) => {
 <body>
   <main>
     <header class="hero">
-      <div class="eyebrow">API local de inferencia</div>
-      <h1>LLM API</h1>
+      <div class="brand">
+        <img src="/docs/logo.svg" alt="Logo de LLM API">
+        <div>
+          <div class="eyebrow">API local de inferencia</div>
+          <h1>LLM API</h1>
+        </div>
+      </div>
       <p>API REST para chat, completions y embeddings con un modelo local optimizado para responder en español.</p>
       <div class="base-url"><code>Base URL: ${escapeHtml(baseUrl)}</code></div>
     </header>
@@ -115,6 +128,10 @@ router.get("/", (_req, res) => {
   </main>
 </body>
 </html>`);
+});
+
+router.get("/logo.svg", (_req, res) => {
+  res.type("image/svg+xml").send(logoSvg);
 });
 
 export default router;
