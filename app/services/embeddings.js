@@ -1,15 +1,5 @@
-import { fileURLToPath } from "node:url";
-import path from "node:path";
 import { getLlama } from "node-llama-cpp";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const MODEL_PATH = path.join(
-  __dirname,
-  "..",
-  "models",
-  "llama-3.2-1b-instruct-q4_k_m.gguf"
-);
+import { ensureModel } from "./model.js";
 
 let _embeddingContext = null;
 
@@ -17,8 +7,9 @@ async function getEmbeddingContext() {
   if (_embeddingContext) return _embeddingContext;
 
   console.log("[Embeddings] Loading model...");
+  const modelPath = await ensureModel();
   const llama = await getLlama();
-  const model = await llama.loadModel({ modelPath: MODEL_PATH });
+  const model = await llama.loadModel({ modelPath });
   _embeddingContext = await model.createEmbeddingContext();
   console.log("[Embeddings] Model loaded");
   return _embeddingContext;

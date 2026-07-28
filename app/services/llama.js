@@ -1,16 +1,6 @@
-import { fileURLToPath } from "node:url";
-import path from "node:path";
 import { getLlama, LlamaChatSession } from "node-llama-cpp";
 import { DEFAULT_TEMPERATURE, DEFAULT_MAX_TOKENS } from "../config.js";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const MODEL_PATH = path.join(
-  __dirname,
-  "..",
-  "models",
-  "llama-3.2-1b-instruct-q4_k_m.gguf"
-);
+import { ensureModel } from "./model.js";
 
 let _session = null;
 
@@ -18,8 +8,9 @@ async function getSession() {
   if (_session) return _session;
 
   console.log("[LLM] Loading model...");
+  const modelPath = await ensureModel();
   const llama = await getLlama();
-  const model = await llama.loadModel({ modelPath: MODEL_PATH });
+  const model = await llama.loadModel({ modelPath });
   const context = await model.createContext();
   _session = new LlamaChatSession({
     contextSequence: context.getSequence(),

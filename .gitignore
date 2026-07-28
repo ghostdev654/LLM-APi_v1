@@ -1,6 +1,8 @@
 .env
 stats.db
 node_modules/*
+app/models/*.gguf
+app/models/*.download
 package-lock.json
 .config
 .agents
