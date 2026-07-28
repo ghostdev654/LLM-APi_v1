@@ -5,6 +5,7 @@ import completionRouter from "./routes/completion.js";
 import embeddingsRouter from "./routes/embeddings.js";
 import healthRouter from "./routes/health.js";
 import adminRouter from "./routes/admin.js";
+import docsRouter from "./routes/docs.js";
 import { requestLogger } from "./middleware/logger.js";
 import { validateInput } from "./middleware/validate.js";
 import { PORT } from "./config.js";
@@ -24,6 +25,10 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+app.get("/", (_req, res) => {
+  res.redirect("/docs");
+});
+app.use("/docs", docsRouter);
 app.use("/api/chat", chatRouter);
 app.use("/api/completion", completionRouter);
 app.use("/api/embeddings", embeddingsRouter);
