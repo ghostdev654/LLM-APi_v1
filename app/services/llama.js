@@ -9,7 +9,7 @@ const MODEL_PATH = path.join(
   __dirname,
   "..",
   "models",
-  "smollm2-135m-instruct-q2_k.gguf"
+  "llama-3.2-1b-instruct-q4_k_m.gguf"
 );
 
 let _session = null;
